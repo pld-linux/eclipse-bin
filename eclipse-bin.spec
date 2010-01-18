@@ -9,6 +9,7 @@ Source0:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gt
 # Source0-md5:	8c1e4f8cc967cfc847ddd8150407d8cd
 Source1:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gtk-x86_64.tar.gz
 # Source1-md5:	f7a468512be47b9119ce1b92d25d9c7e
+Source2:	eclipse.desktop
 URL:		http://www.eclipse.org/
 BuildRequires:	unzip
 Requires:	ant
@@ -42,12 +43,16 @@ wszystkiego i niczego w szczególności.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse,%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse,%{_bindir},%{_desktopdir},%{_pixmapsdir}}
 
 cd eclipse
 cp -a features p2 configuration plugins \
-      icon.xpm libcairo-swt.so eclipse \
+      libcairo-swt.so eclipse \
       $RPM_BUILD_ROOT%{_libdir}/eclipse
+
+install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 
 ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
 
@@ -62,7 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eclipse/p2
 %{_libdir}/eclipse/configuration
 %{_libdir}/eclipse/plugins
-%{_libdir}/eclipse/icon.xpm
+%{_desktopdir}/eclipse.desktop
+%{_pixmapsdir}/eclipse-icon.xpm
 %attr(755,root,root) %{_libdir}/eclipse/libcairo-swt.so
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
