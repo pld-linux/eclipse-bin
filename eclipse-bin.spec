@@ -23,6 +23,8 @@ BuildRequires:	unzip
 Requires:	ant
 Requires:	jdk >= 1.4
 Obsoletes:	eclipse-SDK
+Obsoletes:	eclipse
+Provides:	eclipse = %{version}-%{release}
 ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
