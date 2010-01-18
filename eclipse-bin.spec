@@ -1,3 +1,7 @@
+
+%bcond_without	ix86	# don't download ix86 source
+%bcond_without	x86_64	# don't download x86_64 source
+
 Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
@@ -5,10 +9,14 @@ Version:	3.5.1
 Release:	0.1
 License:	EPL v1.0
 Group:		Development/Tools
+%if %{with ix86}
 Source0:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gtk.tar.gz
 # Source0-md5:	8c1e4f8cc967cfc847ddd8150407d8cd
+%endif
+%if %{with x86_64}
 Source1:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gtk-x86_64.tar.gz
 # Source1-md5:	f7a468512be47b9119ce1b92d25d9c7e
+%endif
 Source2:	eclipse.desktop
 URL:		http://www.eclipse.org/
 BuildRequires:	unzip
