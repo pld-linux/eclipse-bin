@@ -18,6 +18,7 @@ Source1:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gt
 # Source1-md5:	f7a468512be47b9119ce1b92d25d9c7e
 %endif
 Source2:	eclipse.desktop
+Source3:	eclipse.ini
 URL:		http://www.eclipse.org/
 BuildRequires:	unzip
 Requires:	ant
@@ -53,7 +54,7 @@ wszystkiego i niczego w szczególności.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse,%{_bindir},%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse,%{_bindir},%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
 
 cd eclipse
 cp -a features p2 configuration plugins \
@@ -62,9 +63,11 @@ cp -a features p2 configuration plugins \
 
 install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+install -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+install -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/eclipse-icon.xpm
 
 ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
+ln -s %{_libdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eclipse/plugins
 %{_desktopdir}/eclipse.desktop
 %{_pixmapsdir}/eclipse-icon.xpm
+%config(noreplace) %verify(not md5 mtime size) %attr(644,root,root) %{_sysconfdir}/eclipse
 %attr(755,root,root) %{_libdir}/eclipse/libcairo-swt.so
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
