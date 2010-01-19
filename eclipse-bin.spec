@@ -64,10 +64,10 @@ cp -a features p2 configuration plugins \
 install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
 
 install -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
-install -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/eclipse-icon.xpm
+install -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/eclipse.ini
 
 ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
-ln -s %{_libdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
+ln -s %{_sysconfdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_libdir}/eclipse/eclipse.ini
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eclipse/p2
 %{_libdir}/eclipse/configuration
 %{_libdir}/eclipse/plugins
+%{_libdir}/eclipse/eclipse.ini
 %{_desktopdir}/eclipse.desktop
 %{_pixmapsdir}/eclipse-icon.xpm
 %config(noreplace) %verify(not md5 mtime size) %attr(644,root,root) %{_sysconfdir}/eclipse
