@@ -6,7 +6,7 @@ Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
 Version:	3.5.1
-Release:	1
+Release:	2
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
