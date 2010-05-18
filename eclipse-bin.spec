@@ -20,6 +20,7 @@ Source1:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gt
 Source2:	eclipse.desktop
 Source3:	eclipse.ini
 URL:		http://www.eclipse.org/
+BuildRequires:	rpm-pythonprov
 BuildRequires:	unzip
 Requires:	ant
 Requires:	jdk >= 1.4
