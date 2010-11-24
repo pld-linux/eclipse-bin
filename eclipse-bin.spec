@@ -5,17 +5,17 @@
 Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
-Version:	3.5.1
-Release:	2
+Version:	3.6.1
+Release:	1
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
-Source0:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gtk.tar.gz
-# Source0-md5:	8c1e4f8cc967cfc847ddd8150407d8cd
+Source0:	ftp://eclipse.bluage.com/eclipse361/eclipse-jee-helios-SR1-linux-gtk.tar.gz
+# Source0-md5:	c045d0321e1f427c331a4223c69bcc7a
 %endif
 %if %{with x86_64}
-Source1:	ftp://eclipse.bluage.com/technologySR1/eclipse-jee-galileo-SR1-linux-gtk-x86_64.tar.gz
-# Source1-md5:	f7a468512be47b9119ce1b92d25d9c7e
+Source1:	ftp://eclipse.bluage.com/eclipse361/eclipse-jee-helios-SR1-linux-gtk-x86_64.tar.gz
+# Source1-md5:	c214480aecd3b591f7638635f6d7e3c5
 %endif
 Source2:	eclipse.desktop
 Source3:	eclipse.ini
