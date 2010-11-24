@@ -64,7 +64,11 @@ cp -a features p2 configuration plugins \
 install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
 
 install -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
-install -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/eclipse.ini
+install -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
+
+%ifarch %{x8664}
+%{__sed} -i -e 's|x86|x86_64|' $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
+%endif
 
 ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
 ln -s %{_sysconfdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_libdir}/eclipse/eclipse.ini
