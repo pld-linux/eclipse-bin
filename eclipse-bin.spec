@@ -6,7 +6,7 @@ Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
 Version:	3.6.1
-Release:	1
+Release:	2
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
@@ -54,7 +54,7 @@ wszystkiego i niczego w szczególności.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse,%{_bindir},%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
+install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse{,/dropins},%{_bindir},%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
 
 cd eclipse
 cp -a features p2 configuration plugins \
@@ -76,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc eclipse/{about_files,readme,*html}
 %dir %{_libdir}/eclipse
+%dir %{_libdir}/eclipse/dropins
 %{_libdir}/eclipse/features
 %{_libdir}/eclipse/p2
 %{_libdir}/eclipse/configuration
@@ -83,7 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eclipse/eclipse.ini
 %{_desktopdir}/eclipse.desktop
 %{_pixmapsdir}/eclipse-icon.xpm
-%config(noreplace) %verify(not md5 mtime size) %attr(644,root,root) %{_sysconfdir}/eclipse
+%dir %{_sysconfdir}/eclipse
+%config(noreplace) %verify(not md5 mtime size) %attr(644,root,root) %{_sysconfdir}/eclipse/eclipse.ini
 %attr(755,root,root) %{_libdir}/eclipse/libcairo-swt.so
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
