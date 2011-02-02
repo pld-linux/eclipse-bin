@@ -6,7 +6,7 @@ Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
 Version:	3.6.1
-Release:	2
+Release:	3
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
@@ -63,11 +63,18 @@ cp -a features p2 configuration plugins \
 
 install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
 
-install -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
-install -p eclipse.ini $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+cp -p eclipse.ini $RPM_BUILD_ROOT%{_sysconfdir}/eclipse/eclipse.ini
 
 ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
 ln -s %{_sysconfdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_libdir}/eclipse/eclipse.ini
+
+# place for arch independent plugins
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{features,plugins}
+cat <<-'EOF'> $RPM_BUILD_ROOT%{_datadir}/%{name}/.eclipseextension
+id=org.eclipse.platform name=Eclipse Platform
+version=%{version}
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,3 +96,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/eclipse/libcairo-swt.so
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
+
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/features
+%dir %{_datadir}/%{name}/plugins
+%{_datadir}/%{name}/.eclipseextension
