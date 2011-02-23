@@ -6,7 +6,7 @@ Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
 Version:	3.6.1
-Release:	3
+Release:	4
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
@@ -27,6 +27,8 @@ Requires:	jdk >= 1.4
 Obsoletes:	eclipse-SDK
 Obsoletes:	eclipse
 Provides:	eclipse = %{version}-%{release}
+Provides:	eclipse-dtp
+Provides:	eclipse-plugin-webtools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86\\|athlon\\|pentium/x86/;s/amd64/x86_64/')
@@ -70,8 +72,8 @@ ln -s %{_libdir}/eclipse/eclipse $RPM_BUILD_ROOT%{_bindir}
 ln -s %{_sysconfdir}/eclipse/eclipse.ini $RPM_BUILD_ROOT%{_libdir}/eclipse/eclipse.ini
 
 # place for arch independent plugins
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/{features,plugins}
-cat <<-'EOF'> $RPM_BUILD_ROOT%{_datadir}/%{name}/.eclipseextension
+install -d $RPM_BUILD_ROOT%{_datadir}/eclipse/{features,plugins}
+cat <<-'EOF'> $RPM_BUILD_ROOT%{_datadir}/eclipse/.eclipseextension
 id=org.eclipse.platform name=Eclipse Platform
 version=%{version}
 EOF
@@ -97,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
 
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/features
-%dir %{_datadir}/%{name}/plugins
-%{_datadir}/%{name}/.eclipseextension
+%dir %{_datadir}/eclipse
+%dir %{_datadir}/eclipse/features
+%dir %{_datadir}/eclipse/plugins
+%{_datadir}/eclipse/.eclipseextension
