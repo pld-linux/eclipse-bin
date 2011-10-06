@@ -18,7 +18,6 @@ Source1:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/indig
 # Source1-md5:	f1ba48517e28875011542a425d6f36e4
 %endif
 Source2:	eclipse.desktop
-Source3:	eclipse.ini
 URL:		http://www.eclipse.org/
 BuildRequires:	rpm-pythonprov
 BuildRequires:	unzip
