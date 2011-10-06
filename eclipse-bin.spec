@@ -5,7 +5,7 @@
 Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
-Version:	3.7
+Version:	3.7.1
 Release:	1
 License:	EPL v1.0
 Group:		Development/Tools
@@ -56,7 +56,8 @@ wszystkiego i niczego w szczególności.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/eclipse{,/dropins},%{_bindir},%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
+install -d $RPM_BUILD_ROOT{{%{_libdir},%{_datadir}}/eclipse/dropins,%{_bindir}} \
+	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
 
 cd eclipse
 cp -a features p2 configuration plugins \
@@ -100,6 +101,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/eclipse
 
 %dir %{_datadir}/eclipse
-%dir %{_datadir}/eclipse/features
-%dir %{_datadir}/eclipse/plugins
+%dir %{_datadir}/eclipse/dropins
 %{_datadir}/eclipse/.eclipseextension
