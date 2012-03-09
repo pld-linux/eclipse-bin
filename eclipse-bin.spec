@@ -5,17 +5,17 @@
 Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
-Version:	3.7.1
+Version:	3.7.2
 Release:	1
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
-Source0:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/indigo/R/eclipse-jee-indigo-linux-gtk.tar.gz
-# Source0-md5:	a75089028a10e5140bf18ca0b83a3041
+Source0:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/indigo/SR2/eclipse-jee-indigo-SR2-linux-gtk.tar.gz
+# Source0-md5:	9aa26403a82436a9170e73ae243fbd76
 %endif
 %if %{with x86_64}
-Source1:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/indigo/R/eclipse-jee-indigo-linux-gtk-x86_64.tar.gz
-# Source1-md5:	f1ba48517e28875011542a425d6f36e4
+Source1:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/indigo/SR2/eclipse-jee-indigo-SR2-linux-gtk-x86_64.tar.gz
+# Source1-md5:	50920c321037aa0c19bf9f6fd80ad2dc
 %endif
 Source2:	eclipse.desktop
 URL:		http://www.eclipse.org/
