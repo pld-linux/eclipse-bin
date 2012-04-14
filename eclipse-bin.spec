@@ -27,6 +27,7 @@ Obsoletes:	eclipse-SDK
 Obsoletes:	eclipse
 Provides:	eclipse = %{version}-%{release}
 Provides:	eclipse-dtp
+Provides:	eclipse-gef
 Provides:	eclipse-plugin-webtools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
