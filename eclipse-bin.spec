@@ -5,17 +5,19 @@
 Summary:	Eclipse - an open extensible IDE
 Summary(pl.UTF-8):	Eclipse - otwarte, rozszerzalne środowisko programistyczne
 Name:		eclipse-bin
+%define		eversion	kepler
+%define		erelease	SR1
 Version:	4.3.1
-Release:	1
+Release:	2
 License:	EPL v1.0
 Group:		Development/Tools
 %if %{with ix86}
-Source0:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/juno/SR2/eclipse-jee-juno-SR2-linux-gtk.tar.gz
-# Source0-md5:	6825040c54327fb7966f08b7335812ee
+Source0:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/%{eversion}/%{erelease}/eclipse-jee-%{eversion}-%{erelease}-linux-gtk.tar.gz
+# Source0-md5:	ae270acfc89b6c15f5e80b3b24922bc2
 %endif
 %if %{with x86_64}
-Source1:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/juno/SR2/eclipse-jee-juno-SR2-linux-gtk-x86_64.tar.gz
-# Source1-md5:	38b7f7a2c6a382bb1f68ece2800dc008
+Source1:	ftp://ftp.uninett.no/pub/eclipse/technology/epp/downloads/release/%{eversion}/%{erelease}/eclipse-jee-%{eversion}-%{erelease}-linux-gtk-x86_64.tar.gz
+# Source1-md5:	1134caead591b42a96642131186cb069
 %endif
 Source2:	eclipse.desktop
 URL:		http://www.eclipse.org/
@@ -60,9 +62,7 @@ install -d $RPM_BUILD_ROOT{{%{_libdir},%{_datadir}}/eclipse/dropins,%{_bindir}} 
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_sysconfdir}/eclipse}
 
 cd eclipse
-cp -a features p2 configuration plugins \
-      libcairo-swt.so eclipse \
-      $RPM_BUILD_ROOT%{_libdir}/eclipse
+cp -a features p2 configuration plugins eclipse $RPM_BUILD_ROOT%{_libdir}/eclipse
 
 install -p icon.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/eclipse-icon.xpm
 
@@ -96,7 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/eclipse-icon.xpm
 %dir %{_sysconfdir}/eclipse
 %config(noreplace) %verify(not md5 mtime size) %attr(644,root,root) %{_sysconfdir}/eclipse/eclipse.ini
-%attr(755,root,root) %{_libdir}/eclipse/libcairo-swt.so
 %attr(755,root,root) %{_libdir}/eclipse/eclipse
 %attr(755,root,root) %{_bindir}/eclipse
 
